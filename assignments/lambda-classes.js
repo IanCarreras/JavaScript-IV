@@ -130,7 +130,7 @@ console.log(instructor1.speak())
 console.log(instructor2.demo('css'))
 console.log(instructor1.grade(student1, 'css'))
 
-console.log('here ', student1.listsSubjects())
+student1.listsSubjects()
 console.log(student2.PRAssignment('javascript'))
 console.log(student1.sprintChallenge('javascript'))
 
