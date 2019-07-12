@@ -10,6 +10,10 @@ class Person {
     speak() {
         return `Hello my name is ${this.name}, I am from ${this.location}.`
     }
+
+    getGrade(max) {
+        return Math.floor(Math.random() * Math.floor(max))
+    }
 }
 
 class Instructor extends Person {
@@ -27,6 +31,11 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`
     }
+
+    gradeStudent(student) {
+        student.grade = this.getGrade(100)
+        return student.grade
+    }
 }
 
 class Student extends Person {
@@ -35,6 +44,7 @@ class Student extends Person {
         this.previousBackground = attrs.previousBackground
         this.className = attrs.className
         this.favSubjects = attrs.favSubjects
+        this.grade = attrs.grade
     }
 
     listsSubjects() {
@@ -47,6 +57,11 @@ class Student extends Person {
 
     sprintChallenge(subject) {
         return `${this.name} has begun sprint challenge on ${subject}.`
+    }
+
+    graduate() {
+        if (this.grade > 70) { return `${this.name} has graduated.`}
+        else {return `Keep studying.`}
     }
 }
 
@@ -63,6 +78,11 @@ class TeamLeader extends Person {
 
     debugsCode(student, subject) {
         return `${this.name} debugs ${student.name}'s code on ${subject}.`
+    }
+
+    gradeStudent(student) {
+        student.grade = this.getGrade(100)
+        return student.grade
     }
 }
 
@@ -91,7 +111,8 @@ const student1 = new Student({
     age: 54,
     previousBackground: 'landscaper',
     className: 'webpt8',
-    favSubjects: ['JavaScript', 'Node', 'SQL']
+    favSubjects: ['JavaScript', 'Node', 'SQL'],
+    grade: 1
 })
 
 const student2 = new Student({
@@ -100,7 +121,8 @@ const student2 = new Student({
     age: 41,
     previousBackground: 'bartender',
     className: 'webpt9',
-    favSubjects: ['React', 'Redux', 'MongoDB']
+    favSubjects: ['React', 'Redux', 'MongoDB'],
+    grade: 1
 })
 
 const teamLeader1 = new TeamLeader({
@@ -136,3 +158,10 @@ console.log(student1.sprintChallenge('javascript'))
 
 console.log(teamLeader1.standUp('webpt8'))
 console.log(teamLeader2.debugsCode(student2, 'html'))
+
+
+console.log(instructor1.gradeStudent(student1))
+console.log(student1.graduate())
+
+console.log(instructor1.gradeStudent(student1))
+console.log(student1.graduate())
